@@ -1,8 +1,7 @@
-//GLOBAL VARIABLES
+//DEFINE GLOBAL VARIABLES & FUNCTIONS
 
 //Array: Buttons to be created dynamically based on array items
 var buttonArray = ["cat", "dog", "bird", "frog"];
-
 
 
 //FUNCTION 1: For each item in the buttonArray, create a button w/ text and data-animal and append
@@ -23,6 +22,7 @@ function createButton() {
 
 //FUNCTION 2: When gifButton is clicked, run an ajax request for gifs = data-animal of clicked button
 function createGif() {
+    console.log("Create gif function!");
     var queryURL = "https://api.giphy.com/v1/gifs/search";
     var animal = $(this).attr("data-animal")
 
@@ -67,12 +67,15 @@ function createGif() {
             //Assign the image element an attribute data state = "still"; will toggle still/animated to track whether gif is moving or not
             $(gifImage).attr("data-state", "still");
 
+            var gifRating = $("<p class = 'gifRating'>");
+
+            gifRating.text("Rating: " + dataArray[i].rating);
+
             //Display the gif in the DOM
             $(".gifHolder").append(gifImage);
 
-            //Add steps to dispaly rating as well, will need to create a paragraph, determine styling (flexbox?)
-
-            console.log(gifImage)
+            //Display the corresponding rating below the gif in the DOM
+            $(".gifHolder").append(gifRating);
 
         }
     });
@@ -80,7 +83,7 @@ function createGif() {
 
 //FUNCTION 3: When gifImage is clicked, change the gif displayed from still --> animated or animated --> still
 function gifClicked(){
-
+    console.log($(this).attr("data-state"));
     var state = $(this).attr("data-state"); //Assign variable to track current state of the gif (still or animated)
 
     if (state === "still"){ //If gif is currently still:
@@ -98,27 +101,28 @@ function gifClicked(){
 };
         
 //FUNCTION 4: When input is entered in search, take the value of input and dynamically create a button and add to array
-
 function searchButton (event){
     event.preventDefault(); //Prevents submit button from trying to send input somewhere
 
     //If the user does not enter a value in the search bar, do nothing.
     if ($("#searchField").val().trim() == ""){ 
-        return 
+        console.log("No data!");
+        
     
     //If value entered in search, take value of what is in search field, remove white space and set = to variable.
     } else {
+        console.log("New search")
         var animalSearch = $("#searchField").val().trim()
 
         //Add search term into button Array
         buttonArray.push(animalSearch);
+        console.log(buttonArray)
 
         //Call function to recreate buttons from array with new search term included
         createButton();
 
     }
 };
-
 
       // ------ CODE TO RUN--------------
 
@@ -132,3 +136,9 @@ $(document).on("click", ".giphyImage", gifClicked);
 
 //Call searchButton function when submit button is  clicked (Defined above)
 $(".searchGif").on("click", searchButton);
+
+//Next Steps:
+    //Figure out sizing for gifs so they are 2 x 2 full screen, 4 x 4 x 2 small screen
+    //Figure out gif theme, update terms in array/variable names
+    //Css - Style the page to match the theme
+    //Add audio (depending on theme)
