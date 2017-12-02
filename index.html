@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>giphyCreator</title>
+    <meta charset="utf-8">
+
+    <!-- Bootstrap and CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+
+
+    <!-- Navbar with Search bar and submitbutton -->
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+
+                
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="#">GifCreator</a>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <form class="navbar-form navbar-right">
+                    <!-- Search field -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="searchField" placeholder="Search">
+                    </div>
+                    <!-- //Submit Button -->
+                    <button type="submit" class="btn btn-default searchGif">Submit</button>
+                </form>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+    <container class="mainContainer">
+
+    <!-- Panel on the left (will hold buttons) 4/12 -->
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-4 col-md-4">  
+                <div class="panel panel-default buttonDiv">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Select a Button</h3>
+                    </div>
+                    <div class="panel-body">
+                        List of Buttons
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel on the right (will hold gifs) 8/12 -->
+
+            <div class="col-xs-12 col-sm-8 col-md-8">  
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Gifs: </h3>
+                    </div>
+                    <div class="panel-body gifHolder">
+                    <!-- Gifs go Here -->
+                    </div>
+                </div>
+            </div>
+
+        </div>  <!-- End Row-->
+
+    </container>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/javascript.js"></script>
+
+</body>
+
+</html>
