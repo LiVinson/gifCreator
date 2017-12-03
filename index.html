@@ -5,10 +5,12 @@
     <title>giphyCreator</title>
     <meta charset="utf-8">
 
-    <!-- Bootstrap and CSS -->
+    <!-- Bootstrap, CSS and Google Fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Permanent+Marker|Slabo+27px" rel="stylesheet">
 
 </head>
 
@@ -18,7 +20,7 @@
 
     <!-- Navbar with Search bar and submitbutton -->
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default nbaNavbar">
         <div class="container-fluid">
 
             <div class="navbar-header">
@@ -28,8 +30,9 @@
                     aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="#">GifCreator</a>
-            </div>
+               
+                <a class="navbar-brand" href="#"><span id="nbaHeader">NBA</span> GIF Creator</a>
+                           </div>
 
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,10 +40,10 @@
                 <form class="navbar-form navbar-right">
                     <!-- Search field -->
                     <div class="form-group">
-                        <input type="text" class="form-control" id="searchField" placeholder="Search">
+                        <input type="text" class="form-control" id="searchField" placeholder="Search for an NBA Player...">
                     </div>
                     <!-- //Submit Button -->
-                    <button type="submit" class="btn btn-default searchGif">Submit</button>
+                    <button type="submit" class="btn btn-default searchGif">Search</button>
                 </form>
 
             </div>
@@ -52,12 +55,12 @@
 
     <container class="mainContainer">
 
-    <!-- Panel on the left (will hold buttons) 4/12 -->
+    <!-- Panel on the left (will hold buttons) 3/12 -->
 
         <div class="row">
 
-            <div class="col-xs-12 col-sm-4 col-md-4">  
-                <div class="panel panel-default buttonDiv">
+            <div class="col-xs-12 col-sm-2 col-md-2 buttonDiv">  
+                <div class="panel panel-default buttonPanel">
                     <div class="panel-heading">
                         <h3 class="panel-title">Select a Button</h3>
                     </div>
@@ -67,12 +70,12 @@
                 </div>
             </div>
 
-            <!-- Panel on the right (will hold gifs) 8/12 -->
+            <!-- Panel on the right (will hold gifs) 9/12 -->
 
-            <div class="col-xs-12 col-sm-8 col-md-8">  
-                <div class="panel panel-default">
+            <div class="col-xs-12 col-sm-10 col-md-10 gifDiv">  
+                <div class="panel panel-default gifPanel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Gifs: </h3>
+                        <h3 class="panel-title">Click a button to check Out NBA gifs, or search for your favorite player. Click a gif to see it in action!</h3>
                     </div>
                     <div class="panel-body gifHolder">
                     <!-- Gifs go Here -->

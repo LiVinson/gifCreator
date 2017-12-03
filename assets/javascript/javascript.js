@@ -1,18 +1,18 @@
 //DEFINE GLOBAL VARIABLES & FUNCTIONS
 
 //Array: Buttons to be created dynamically based on array items
-var buttonArray = ["cat", "dog", "bird", "frog"];
+var playerArray = ["Russ Westbrook", "Steph Curry", "Lebron James", "Kyrie Irving", "James Harden", "Carmelo Anthony", "Lonzo Ball", "Kristaps Porzingis", "Anthony Davis", "Kevin Durant"];
 
 
-//FUNCTION 1: For each item in the buttonArray, create a button w/ text and data-animal and append
+//FUNCTION 1: For each item in the buttonArray, create a button w/ text and data-player and append
 function createButton() {
     $(".buttonDiv").empty(); //Empties div of array currently displayed
 
-
-    //For each item item in array, create a button, add data-animal and text attributes = array item, display button
-    buttonArray.forEach(function (element, index, myArray) {
+    
+    //For each item item in array, create a button, add data-player and text attributes = array item, display button
+    playerArray.forEach(function (element, index, myArray) {
         var button = $("<button type='button' class='btn btn-default gifButton'>");
-        button.attr("data-animal", element);
+        button.attr("data-player", element);
         button.text(element);
         $(".buttonDiv").append(button);
     });
@@ -20,17 +20,17 @@ function createButton() {
 };
 
 
-//FUNCTION 2: When gifButton is clicked, run an ajax request for gifs = data-animal of clicked button
+//FUNCTION 2: When gifButton is clicked, run an ajax request for gifs = data-player of clicked button
 function createGif() {
     console.log("Create gif function!");
     var queryURL = "https://api.giphy.com/v1/gifs/search";
-    var animal = $(this).attr("data-animal")
+    var playerName = $(this).attr("data-player")
 
     $.ajax({
         url: queryURL,
         method: "GET",
         data: {
-            q: animal,
+            q: playerName,
             "api_key": "T670yjZdJcSE8EnsVaVaNzeYWhmpEArS",
             limit: 10, //Return 10 gifs (Default 25)
         }
@@ -42,19 +42,21 @@ function createGif() {
        
         //Empty the gifHolder div of gifs that are there (from previous buttons clicked)
         $(".gifHolder").empty();
-
+   
         //For each item in the dataArray (each item is a different gif, 10 total)
-        for (var i =0; i< dataArray.length; i++) { //Decide if this should be forEach instead
+        for (var i =0; i< dataArray.length; i++) { 
 
             //Create an image element w/ class giphyImage
-            var gifImage = $("<img class = 'giphyImage'>");
+            var gifImage = $("<img class = 'gifImage'>");
 
             //Assign the url for still gif from response object to a varibale
-            var stillURL = dataArray[i].images.fixed_height_still.url; //Determine type of URL to use for still
+            var stillURL = dataArray[i].images.fixed_width_still.url; //Determine type of URL to use for still
+            console.log(stillURL);
 
             //Assign the url for animated gif from response object to a varibale
-            var animatedURL = dataArray[i].images.fixed_height.url;//Determine type of URL to use for animated gif
-
+            var animatedURL = dataArray[i].images.fixed_width.url;//Determine type of URL to use for animated gif
+            console.log(stillURL);
+            
             //Assign the image element an attribute = stillURL
             $(gifImage).attr("data-still", stillURL);
 
@@ -67,22 +69,37 @@ function createGif() {
             //Assign the image element an attribute data state = "still"; will toggle still/animated to track whether gif is moving or not
             $(gifImage).attr("data-state", "still");
 
-            var gifRating = $("<p class = 'gifRating'>");
+            
+            var gifRating = $("<div class = 'gifRating'>");
+
+            // gifRating.attr("data-gifNumber", i)
 
             gifRating.text("Rating: " + dataArray[i].rating);
 
-            //Display the gif in the DOM
-            $(".gifHolder").append(gifImage);
+            var gifDiv = $("<div>");
 
+            
             //Display the corresponding rating below the gif in the DOM
-            $(".gifHolder").append(gifRating);
+
+           
+            gifDiv.attr("class", "imageHolder");
+
+
+            //Add the gif and the rating in the same div
+            $(gifDiv).append(gifRating);
+            $(gifDiv).append(gifImage);
+                        
+            //Display the gif and rating in the DOM
+            
+            $(".gifHolder").append(gifDiv);
 
         }
     });
-}
+};
 
 //FUNCTION 3: When gifImage is clicked, change the gif displayed from still --> animated or animated --> still
 function gifClicked(){
+    console.log("gif clicked!")
     console.log($(this).attr("data-state"));
     var state = $(this).attr("data-state"); //Assign variable to track current state of the gif (still or animated)
 
@@ -112,12 +129,13 @@ function searchButton (event){
     //If value entered in search, take value of what is in search field, remove white space and set = to variable.
     } else {
         console.log("New search")
-        var animalSearch = $("#searchField").val().trim()
+        var playerSearch = $("#searchField").val().trim()
 
         //Add search term into button Array
-        buttonArray.push(animalSearch);
-        console.log(buttonArray)
+        playerArray.unshift(playerSearch);
+        console.log(playerArray)
 
+        $("#searchField").val();
         //Call function to recreate buttons from array with new search term included
         createButton();
 
@@ -132,13 +150,12 @@ createButton();
 $(document).on("click", ".gifButton", createGif); 
 
 //Call gifClicked function when element with class gifButton is clicked (Defined above)
-$(document).on("click", ".giphyImage", gifClicked);
+$(document).on("click", ".gifImage", gifClicked);
 
 //Call searchButton function when submit button is  clicked (Defined above)
 $(".searchGif").on("click", searchButton);
 
 //Next Steps:
-    //Figure out sizing for gifs so they are 2 x 2 full screen, 4 x 4 x 2 small screen
-    //Figure out gif theme, update terms in array/variable names
-    //Css - Style the page to match the theme
+    
     //Add audio (depending on theme)
+    //Figure out how to clear searc field
