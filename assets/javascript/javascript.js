@@ -1,10 +1,11 @@
-//DEFINE GLOBAL VARIABLES & FUNCTIONS
+//------ GLOBAL VARIABLES & FUNCTIONS
 
 //Array: Buttons to be created dynamically based on array items
-var playerArray = ["Russ Westbrook", "Steph Curry", "Lebron James", "Kyrie Irving", "James Harden", "Carmelo Anthony", "Lonzo Ball", "Kristaps Porzingis", "Anthony Davis", "Kevin Durant"];
+var playerArray = ["Russ Westbrook", "Steph Curry", "Lebron James", "Kyrie Irving", "James Harden", "Carmelo Anthony", "Kawhi Leonard", "Kristaps Porzingis", "Anthony Davis", "Kevin Durant"];
 
 
 //FUNCTION 1: For each item in the buttonArray, create a button w/ text and data-player and append
+
 function createButton() {
     $(".buttonDiv").empty(); //Empties div of array currently displayed
 
@@ -21,6 +22,7 @@ function createButton() {
 
 
 //FUNCTION 2: When gifButton is clicked, run an ajax request for gifs = data-player of clicked button
+
 function createGif() {
     console.log("Create gif function!");
     var queryURL = "https://api.giphy.com/v1/gifs/search";
@@ -98,6 +100,7 @@ function createGif() {
 };
 
 //FUNCTION 3: When gifImage is clicked, change the gif displayed from still --> animated or animated --> still
+
 function gifClicked(){
     console.log("gif clicked!")
     console.log($(this).attr("data-state"));
@@ -118,6 +121,7 @@ function gifClicked(){
 };
         
 //FUNCTION 4: When input is entered in search, take the value of input and dynamically create a button and add to array
+
 function searchButton (event){
     event.preventDefault(); //Prevents submit button from trying to send input somewhere
 
@@ -142,7 +146,7 @@ function searchButton (event){
     }
 };
 
-      // ------ CODE TO RUN--------------
+ // ------ CODE TO RUN--------------
 
 createButton();
 
@@ -154,8 +158,3 @@ $(document).on("click", ".gifImage", gifClicked);
 
 //Call searchButton function when submit button is  clicked (Defined above)
 $(".searchGif").on("click", searchButton);
-
-//Next Steps:
-    
-    //Add audio (depending on theme)
-    //Figure out how to clear searc field
